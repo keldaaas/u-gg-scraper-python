@@ -1,17 +1,18 @@
 import customtkinter as ctk
-from UI.backend import handle_import
+from UI.backend import Backend
 
 
 def add_elements(root):
 
+    backend = Backend()
     action_frame = ctk.CTkFrame(root)
     action_frame.grid_columnconfigure(0, weight=1)
     action_frame.grid_columnconfigure(1, weight=1)
 
     data_frame = ctk.CTkScrollableFrame(root)
 
-    import_btn = ctk.CTkButton(action_frame, text="Import", command=lambda: handle_import(data_frame))
-    export_btn = ctk.CTkButton(action_frame, text="Export", fg_color="#fc2003", hover_color="#d11a02")
+    import_btn = ctk.CTkButton(action_frame, text="Import", command=lambda: backend.handle_import(data_frame))
+    export_btn = ctk.CTkButton(action_frame, text="Export", command=lambda: backend.handle_export(), fg_color="#fc2003", hover_color="#d11a02")
 
     import_btn.grid(row=0, column=0, sticky="we", padx=20)
     export_btn.grid(row=0, column=1, sticky="we", padx=20)
